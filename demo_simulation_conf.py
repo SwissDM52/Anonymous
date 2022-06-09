@@ -22,7 +22,7 @@ def threshold_determination(Q):
     for i in range(0,len(new_data)):
         L_l=Q_s[0:i]
         L_r = Q_s[i+1:len(Q_s)]
-        value_var.append(abs(np.var(L_l) - np.var(L_r)))
+        value_var.append(abs(np.std(L_l) - np.std(L_r)))
 
     threshold_value=Q_s[np.where(value_var == np.min(value_var[1:len(value_var)-1]))]
 
@@ -67,10 +67,10 @@ non_train_data_label = auditing_data[51:100]
 target_model = SVC(kernel='linear', tol=1e-30, shrinking=False, probability=True, C=1, max_iter=20000)
 target_model.fit(train_data, train_data_label)
 
-testdata_aduiting_traing_label = target_model.predict(train_data)
+testdata_aduiting_traing_label = target_model.predict(auditing_data)
 
 target_model_simulation = SVC(kernel='linear', tol=1e-30, shrinking=False, probability=True, C=1, max_iter=2000000)
-target_model_simulation.fit(train_data, testdata_aduiting_traing_label)
+target_model_simulation.fit(auditing_data, testdata_aduiting_traing_label)
 
 
 
