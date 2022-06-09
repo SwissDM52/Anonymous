@@ -22,7 +22,7 @@ def threshold_determination(Q):
     for i in range(0,len(new_data)):
         L_l=Q_s[0:i]
         L_r = Q_s[i+1:len(Q_s)]
-        value_var.append(abs(np.var(L_l) - np.var(L_r)))
+        value_var.append(abs(np.std(L_l) - np.std(L_r)))
 
     threshold_value=Q_s[np.where(value_var == np.min(value_var[1:len(value_var)-1]))]
 
